@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  aviator-ai-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aviator_ai_app
+    ports:
+      - "8000:8000"  # FastAPI Health & Prometheus REST API
+      - "7860:7860"  # Gradio Enterprise Dashboard
+    environment:
+      - ENVIRONMENT=PRODUCTION
+      - LOG_LEVEL=INFO
+      - AVIATOR_AI_SECRET_KEY=AVIATOR_AI_PROD_SECRET_2026
+    volumes:
+      - ./data/output:/app/data/output
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: aviator_prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    restart: unless-stopped
