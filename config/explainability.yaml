@@ -1,0 +1,18 @@
+explainability:
+  shap:
+    explainer_type: "tree"
+    max_evals: 500
+    top_k_features: 5
+  lime:
+    num_features: 5
+    num_samples: 1000
+  counterfactual:
+    min_drift_threshold: 0.042
+    step_size: 0.005
+  explanation_limits:
+    client_max_words: 200
+    advisor_max_words: 400
+  visualizations:
+    save_plots: true
+    dpi: 300
+    format: "png"

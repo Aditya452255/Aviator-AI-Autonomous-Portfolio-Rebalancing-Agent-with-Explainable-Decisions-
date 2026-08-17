@@ -1,4 +1,4 @@
-"""Main entry point script supporting Phase 1-4."""
+"""Main entry point script supporting Phase 1-5."""
 import argparse
 from src.core.config import load_config
 from src.core.logger import get_logger
@@ -6,12 +6,13 @@ from src.services.simulation_service import SimulationService
 from src.services.monitoring_service import MonitoringService
 from src.services.optimization_service import OptimizationService
 from src.services.agent_service import AgentService
+from src.services.explainability_service import ExplainabilityService
 
 logger = get_logger(__name__)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Aviator AI - Autonomous Portfolio Rebalancing Agent")
-    parser.add_argument("--phase", type=int, choices=[1, 2, 3, 4], default=4, help="Phase to execute")
+    parser.add_argument("--phase", type=int, choices=[1, 2, 3, 4, 5], default=5, help="Phase to execute")
     args = parser.parse_args()
     config = load_config()
 
@@ -35,7 +36,13 @@ def main() -> None:
                 decision_packages, analytics_agent = agent_service.run_decision_intelligence_cycle(
                     portfolios=portfolios, optimization_results=opt_results, clients=clients, save_exports=True
                 )
-                logger.info(f"Multi-Agent evaluation completed for {len(decision_packages)} decision packages.")
+
+                if args.phase >= 5:
+                    xai_service = ExplainabilityService(config=config)
+                    xai_results, analytics_xai = xai_service.run_explainability_cycle(
+                        portfolios=portfolios, decision_packages=decision_packages, save_exports=True, generate_plots=True
+                    )
+                    logger.info(f"XAI evaluations completed for {len(xai_results)} portfolios.")
 
 if __name__ == "__main__":
     main()
