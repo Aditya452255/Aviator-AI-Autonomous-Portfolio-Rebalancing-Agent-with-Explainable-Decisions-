@@ -1,0 +1,6 @@
+governance:
+  audit_retention_days: 2555  # 7 years regulatory retention
+  require_advisor_signoff: true
+  enable_kill_switch: true
+  max_allowed_drift_without_approval: 0.08
+  strict_compliance_check: true

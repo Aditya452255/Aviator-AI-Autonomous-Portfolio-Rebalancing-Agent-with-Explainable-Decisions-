@@ -1,0 +1,7 @@
+approval_rules:
+  thresholds:
+    high_value_portfolio_threshold: 500000.0     # $500k+ requires human approval
+    ultra_high_value_portfolio_threshold: 2000000.0  # $2M+ requires senior escalation
+    large_trade_threshold: 100000.0               # $100k+ trade order requires approval
+    low_confidence_threshold: 0.75                 # Confidence < 75% requires approval
+    low_consensus_threshold: 0.80                  # Consensus < 80% requires approval

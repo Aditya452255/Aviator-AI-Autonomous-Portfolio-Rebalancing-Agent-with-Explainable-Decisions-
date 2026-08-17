@@ -1,4 +1,4 @@
-"""Main entry point script supporting Phase 1-5."""
+"""Main entry point script supporting Phase 1-6."""
 import argparse
 from src.core.config import load_config
 from src.core.logger import get_logger
@@ -7,12 +7,13 @@ from src.services.monitoring_service import MonitoringService
 from src.services.optimization_service import OptimizationService
 from src.services.agent_service import AgentService
 from src.services.explainability_service import ExplainabilityService
+from src.services.governance_service import GovernanceService
 
 logger = get_logger(__name__)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Aviator AI - Autonomous Portfolio Rebalancing Agent")
-    parser.add_argument("--phase", type=int, choices=[1, 2, 3, 4, 5], default=5, help="Phase to execute")
+    parser.add_argument("--phase", type=int, choices=[1, 2, 3, 4, 5, 6], default=6, help="Phase to execute")
     args = parser.parse_args()
     config = load_config()
 
@@ -42,7 +43,13 @@ def main() -> None:
                     xai_results, analytics_xai = xai_service.run_explainability_cycle(
                         portfolios=portfolios, decision_packages=decision_packages, save_exports=True, generate_plots=True
                     )
-                    logger.info(f"XAI evaluations completed for {len(xai_results)} portfolios.")
+
+                    if args.phase >= 6:
+                        gov_service = GovernanceService(config=config)
+                        approval_requests, analytics_gov = gov_service.run_governance_cycle(
+                            portfolios=portfolios, decision_packages=decision_packages, explainability_results=xai_results, save_exports=True
+                        )
+                        logger.info(f"Governance evaluations completed for {len(approval_requests)} approval requests.")
 
 if __name__ == "__main__":
     main()

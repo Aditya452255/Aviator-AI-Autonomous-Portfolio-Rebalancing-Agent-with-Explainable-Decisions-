@@ -1,0 +1,15 @@
+override_rules:
+  require_reason_comment: true
+  allowed_actions:
+    - APPROVE
+    - REJECT
+    - MODIFY
+    - DEFER
+    - CANCEL
+  valid_reasons:
+    - CLIENT_REQUEST
+    - MARKET_VOLATILITY
+    - TAX_TACTICAL
+    - CASH_REQUIREMENT
+    - RISK_MITIGATION
+    - COMPLIANCE_EXCEPTION

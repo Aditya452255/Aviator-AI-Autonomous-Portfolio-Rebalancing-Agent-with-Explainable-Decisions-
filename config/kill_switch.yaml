@@ -1,0 +1,6 @@
+kill_switch:
+  auto_trigger_rules:
+    max_market_volatility: 0.35            # Volatility > 35% triggers kill switch
+    max_failure_rate_pct: 10.0             # Failure rate > 10% triggers kill switch
+    max_compliance_breach_rate_pct: 5.0    # Compliance breach > 5% triggers kill switch
+    max_unhandled_conflicts: 3
