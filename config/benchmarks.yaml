@@ -1,0 +1,19 @@
+benchmarks:
+  indices:
+    nifty_50:
+      annual_return: 0.125
+      annual_volatility: 0.155
+    nifty_500:
+      annual_return: 0.138
+      annual_volatility: 0.168
+    portfolio_60_40:
+      equity_weight: 0.60
+      debt_weight: 0.40
+      annual_return: 0.098
+      annual_volatility: 0.105
+    equal_weight:
+      annual_return: 0.115
+      annual_volatility: 0.145
+    static_allocation:
+      annual_return: 0.108
+      annual_volatility: 0.130

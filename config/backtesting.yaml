@@ -1,0 +1,16 @@
+backtesting:
+  risk_free_rate: 0.065              # 6.5% INR annual risk-free rate
+  trading_days_per_year: 252
+  initial_capital: 1000000.0         # 1,000,000 INR baseline capital
+  rebalance_frequencies:
+    - DAILY
+    - MONTHLY
+    - QUARTERLY
+    - ANNUAL
+    - ROLLING_WINDOW
+  strategies:
+    - BUY_AND_HOLD
+    - THRESHOLD_REBALANCING
+    - CALENDAR_REBALANCING
+    - AI_OPTIMIZED
+    - TAX_OPTIMIZED

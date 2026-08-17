@@ -1,4 +1,4 @@
-"""Main entry point script supporting Phase 1-6."""
+"""Main entry point script supporting Phase 1-7."""
 import argparse
 from src.core.config import load_config
 from src.core.logger import get_logger
@@ -8,12 +8,13 @@ from src.services.optimization_service import OptimizationService
 from src.services.agent_service import AgentService
 from src.services.explainability_service import ExplainabilityService
 from src.services.governance_service import GovernanceService
+from src.services.backtesting_service import BacktestingService
 
 logger = get_logger(__name__)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Aviator AI - Autonomous Portfolio Rebalancing Agent")
-    parser.add_argument("--phase", type=int, choices=[1, 2, 3, 4, 5, 6], default=6, help="Phase to execute")
+    parser.add_argument("--phase", type=int, choices=[1, 2, 3, 4, 5, 6, 7], default=7, help="Phase to execute")
     args = parser.parse_args()
     config = load_config()
 
@@ -49,7 +50,13 @@ def main() -> None:
                         approval_requests, analytics_gov = gov_service.run_governance_cycle(
                             portfolios=portfolios, decision_packages=decision_packages, explainability_results=xai_results, save_exports=True
                         )
-                        logger.info(f"Governance evaluations completed for {len(approval_requests)} approval requests.")
+
+                        if args.phase == 7:
+                            bt_service = BacktestingService(config=config)
+                            backtest_results, analytics_bt = bt_service.run_backtesting_cycle(
+                                portfolios=portfolios, optimization_results=opt_results, decision_packages=decision_packages, trading_days=config.simulation.trading_days, save_exports=True
+                            )
+                            logger.info("Backtesting engine completed simulation.")
 
 if __name__ == "__main__":
     main()

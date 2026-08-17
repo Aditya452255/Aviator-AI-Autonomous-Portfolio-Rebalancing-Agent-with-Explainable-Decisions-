@@ -1,0 +1,25 @@
+scenarios:
+  regimes:
+    bull_market:
+      annual_return_boost: 0.15
+      volatility_multiplier: 0.80
+    bear_market:
+      annual_return_drag: -0.25
+      volatility_multiplier: 1.50
+    sideways_market:
+      annual_return: 0.02
+      volatility_multiplier: 0.90
+    high_inflation:
+      interest_rate_drag: -0.08
+      real_return_drag: -0.10
+    interest_rate_shock:
+      fixed_income_shock: -0.12
+    liquidity_crisis:
+      slippage_multiplier: 3.0
+      spread_multiplier: 2.5
+    sector_crash:
+      target_sector: "Financials"
+      sector_drop_pct: -0.30
+    black_swan:
+      market_drop_pct: -0.35
+      volatility_spike: 2.5
