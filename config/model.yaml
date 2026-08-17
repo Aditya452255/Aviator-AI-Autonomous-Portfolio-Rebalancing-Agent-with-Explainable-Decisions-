@@ -1,0 +1,16 @@
+surrogate_model:
+  type: "random_forest"
+  n_estimators: 100
+  max_depth: 6
+  random_state: 42
+  features:
+    - portfolio_drift
+    - risk_category_code
+    - sector_exposure_drift
+    - market_volatility
+    - liquidity_score
+    - tax_impact
+    - days_since_last_rebalance
+    - portfolio_size
+    - cash_allocation
+  target: "rebalance_decision"

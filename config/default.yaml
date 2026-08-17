@@ -1,0 +1,18 @@
+app:
+  name: "Aviator AI Autonomous Portfolio Rebalancing Agent"
+  version: "1.0.0"
+  company: "Aviator AI"
+  random_seed: 42
+  environment: "development"
+
+simulation:
+  num_clients: 50000
+  num_portfolios: 50000
+  num_securities: 500
+  trading_days: 252
+  start_date: "2025-01-01"
+
+storage:
+  output_dir: "data/output"
+  format: "parquet"
+  save_csv: true

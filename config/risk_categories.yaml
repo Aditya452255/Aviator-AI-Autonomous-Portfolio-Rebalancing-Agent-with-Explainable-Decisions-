@@ -1,0 +1,41 @@
+risk_categories:
+  ultra_conservative:
+    id: "RC_ULTRA_CONS"
+    name: "Ultra Conservative"
+    target_equity: 0.10
+    target_fixed_income: 0.70
+    target_alternatives: 0.05
+    target_cash: 0.15
+    drift_threshold: 0.03
+  conservative:
+    id: "RC_CONS"
+    name: "Conservative"
+    target_equity: 0.25
+    target_fixed_income: 0.55
+    target_alternatives: 0.10
+    target_cash: 0.10
+    drift_threshold: 0.04
+  balanced:
+    id: "RC_BAL"
+    name: "Balanced"
+    target_equity: 0.50
+    target_fixed_income: 0.35
+    target_alternatives: 0.10
+    target_cash: 0.05
+    drift_threshold: 0.05
+  aggressive:
+    id: "RC_AGG"
+    name: "Aggressive"
+    target_equity: 0.70
+    target_fixed_income: 0.15
+    target_alternatives: 0.10
+    target_cash: 0.05
+    drift_threshold: 0.05
+  ultra_aggressive:
+    id: "RC_ULTRA_AGG"
+    name: "Ultra Aggressive"
+    target_equity: 0.85
+    target_fixed_income: 0.05
+    target_alternatives: 0.08
+    target_cash: 0.02
+    drift_threshold: 0.07
