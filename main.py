@@ -1,15 +1,16 @@
-"""Main entry point script supporting Phase 1-2."""
+"""Main entry point script supporting Phase 1-3."""
 import argparse
 from src.core.config import load_config
 from src.core.logger import get_logger
 from src.services.simulation_service import SimulationService
 from src.services.monitoring_service import MonitoringService
+from src.services.optimization_service import OptimizationService
 
 logger = get_logger(__name__)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Aviator AI - Autonomous Portfolio Rebalancing Agent")
-    parser.add_argument("--phase", type=int, choices=[1, 2], default=2, help="Phase to execute (1=Simulation, 2=Monitoring)")
+    parser.add_argument("--phase", type=int, choices=[1, 2, 3], default=3, help="Phase to execute")
     args = parser.parse_args()
     config = load_config()
 
@@ -21,7 +22,13 @@ def main() -> None:
         metrics_list, queue, alerts, analytics_mon = mon_service.run_monitoring_cycle(
             portfolios=portfolios, clients=clients, save_exports=True
         )
-        logger.info(f"Monitoring completed. Triggered portfolios queue size: {queue.qsize()}")
+
+        if args.phase >= 3:
+            opt_service = OptimizationService(config=config)
+            opt_results, analytics_opt = opt_service.run_optimization_cycle(
+                portfolios=portfolios, rebalancing_queue=queue, clients=clients, securities=securities, save_exports=True
+            )
+            logger.info(f"Optimization completed for {len(opt_results)} portfolios.")
 
 if __name__ == "__main__":
     main()

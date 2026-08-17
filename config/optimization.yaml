@@ -1,0 +1,11 @@
+optimization:
+  default_strategy: "balanced"  # min_drift, min_cost, balanced, tax_optimized
+  solver: "ECOS"  # ECOS, OSQP, SCS, or scipy_fallback
+  max_turnover: 0.25
+  min_trade_value: 500.0
+  cash_reserve_pct: 0.05
+  max_position_weight: 0.15
+  tracking_error_weight: 0.30
+  drift_penalty_weight: 0.40
+  cost_penalty_weight: 0.15
+  tax_penalty_weight: 0.15

@@ -1,0 +1,8 @@
+tax_rules:
+  stcg_rate: 0.20  # Short-Term Capital Gains Tax Rate (20%)
+  ltcg_rate: 0.125  # Long-Term Capital Gains Tax Rate (12.5%)
+  holding_period_days_equity: 365  # >365 days is Long-Term for Equity/ETFs
+  holding_period_days_debt: 1095  # >1095 days is Long-Term for Debt/Bonds
+  tax_loss_harvesting_enabled: true
+  min_loss_harvest_amount: 1000.0
+  lot_selection_strategy: "tax_efficient"  # fifo, lifo, hifo, tax_efficient

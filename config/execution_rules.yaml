@@ -1,0 +1,10 @@
+execution_rules:
+  brokerage_rate: 0.0010  # 0.10% brokerage fee
+  stt_rate_sell: 0.0010  # 0.10% STT on equity sell trades
+  exchange_charge_rate: 0.00003  # 0.003% exchange charge
+  gst_rate: 0.18  # 18% GST on brokerage + exchange charges
+  stamp_duty_rate_buy: 0.00015  # 0.015% stamp duty on buy orders
+  max_adv_participation_rate: 0.10  # Max 10% of Average Daily Volume per day
+  twap_slice_count: 5
+  vwap_slice_count: 8
+  min_lot_size: 1
