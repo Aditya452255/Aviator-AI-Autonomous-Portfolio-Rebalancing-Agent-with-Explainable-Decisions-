@@ -1,0 +1,7 @@
+monitoring:
+  batch_size: 5000
+  default_mode: "batch"  # batch, incremental, scheduled, on_demand
+  schedule_interval: "daily"
+  min_drift_score_to_flag: 0.02
+  cash_drift_threshold: 0.02
+  sector_concentration_threshold: 0.35

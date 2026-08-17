@@ -1,0 +1,13 @@
+priority_weights:
+  portfolio_size_weight: 0.20
+  drift_severity_weight: 0.35
+  risk_category_weight: 0.15
+  market_volatility_weight: 0.10
+  time_since_last_rebalance_weight: 0.10
+  client_importance_weight: 0.05
+  tax_impact_weight: 0.05
+
+priority_thresholds:
+  critical: 0.75
+  high: 0.55
+  medium: 0.35

@@ -1,0 +1,13 @@
+portfolio:
+  min_securities: 15
+  max_securities: 40
+  max_single_security_weight: 0.15
+  min_single_security_weight: 0.005
+
+security:
+  min_liquidity_score: 1.0
+  max_liquidity_score: 100.0
+
+validation:
+  weight_sum_tolerance: 0.0001
+  min_market_value: 0.01

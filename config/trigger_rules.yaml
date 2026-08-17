@@ -1,0 +1,20 @@
+threshold_triggers:
+  equity_drift_limit: 0.05
+  fixed_income_drift_limit: 0.03
+  alternatives_drift_limit: 0.04
+  cash_drift_limit: 0.02
+  single_security_max_weight: 0.15
+
+calendar_triggers:
+  schedules: ["monthly", "quarterly", "semi_annual", "annual"]
+  max_days_unrebalanced: 90
+
+market_event_triggers:
+  market_gap_threshold: 0.035
+  volatility_spike_threshold: 0.25
+  sector_crash_threshold: 0.05
+  liquidity_drop_threshold: 30.0
+
+client_event_triggers:
+  large_cash_flow_pct: 0.05
+  retirement_horizon_years: 3
