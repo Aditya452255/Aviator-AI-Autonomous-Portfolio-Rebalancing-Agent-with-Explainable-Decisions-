@@ -11,12 +11,21 @@ except ImportError:
     generate_latest = None
 
 if HAS_PROMETHEUS:
-    PORTFOLIOS_GOVERNED_TOTAL = Counter("aviator_ai_portfolios_governed_total", "Total portfolios evaluated")
-    OPTIMIZATION_RUNS_TOTAL = Counter("aviator_ai_optimization_runs_total", "Total optimization solver runs", ["status"])
-    REBALANCING_DRIFT_GAUGE = Gauge("aviator_ai_average_portfolio_drift", "Average portfolio drift percentage")
-    EXECUTION_TIME_HISTOGRAM = Histogram("aviator_ai_execution_time_seconds", "Pipeline stage execution latency", ["stage"])
-    SYSTEM_CPU_GAUGE = Gauge("aviator_ai_system_cpu_usage_pct", "System CPU usage percentage")
-    SYSTEM_MEMORY_GAUGE = Gauge("aviator_ai_system_memory_usage_pct", "System RAM usage percentage")
+    from prometheus_client import REGISTRY
+
+    def _get_or_create_metric(metric_cls, name, documentation, *args, **kwargs):
+        try:
+            return metric_cls(name, documentation, *args, **kwargs)
+        except ValueError:
+            return REGISTRY._names_to_collectors.get(name)
+
+    PORTFOLIOS_GOVERNED_TOTAL = _get_or_create_metric(Counter, "aviator_ai_portfolios_governed_total", "Total portfolios evaluated")
+    OPTIMIZATION_RUNS_TOTAL = _get_or_create_metric(Counter, "aviator_ai_optimization_runs_total", "Total optimization solver runs", ["status"])
+    REBALANCING_DRIFT_GAUGE = _get_or_create_metric(Gauge, "aviator_ai_average_portfolio_drift", "Average portfolio drift percentage")
+    EXECUTION_TIME_HISTOGRAM = _get_or_create_metric(Histogram, "aviator_ai_execution_time_seconds", "Pipeline stage execution latency", ["stage"])
+    SYSTEM_CPU_GAUGE = _get_or_create_metric(Gauge, "aviator_ai_system_cpu_usage_pct", "System CPU usage percentage")
+    SYSTEM_MEMORY_GAUGE = _get_or_create_metric(Gauge, "aviator_ai_system_memory_usage_pct", "System RAM usage percentage")
+
 
 
 class PrometheusMetricsManager:
