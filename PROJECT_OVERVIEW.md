@@ -9,6 +9,8 @@
 
 Built using modular Python architecture, convex optimization, multi-agent intelligence, explainable AI (XAI), Human-in-the-Loop (HITL) governance, backtesting, interactive Gradio dashboards, and production-ready reliability & observability layers, **Aviator AI transforms wealth management from a manual, error-prone process into an enterprise-scale autonomous service.**
 
+Upgraded as a **Final Year College Project**, Aviator AI features an intuitive 8-step presentation story workflow, a `🚀 RUN DEMO PORTFOLIO` guided demonstration engine, and a 100% empirical test validation evidence suite (62/62 Pytest tests passing).
+
 ---
 
 ## 🛑 2. The Problems Aviator AI Solves
@@ -45,7 +47,7 @@ In traditional wealth management and robo-advisory platforms, portfolio rebalanc
 
 ---
 
-## 🏗 3. The 9-Phase Autonomous System Architecture
+## 🏗 3. The 12-Phase Autonomous System Architecture
 
 ```
                                 +----------------------------------+
@@ -90,14 +92,20 @@ In traditional wealth management and robo-advisory platforms, portfolio rebalanc
                                                  |
                                                  v
                                 +----------------------------------+
-                                |   Phase 8: Gradio Enterprise     |
-                                |       Operations Dashboard       |
+                                | Phase 8 & 10: Gradio Operations  |
+                                |   & Guided Demo UI Dashboard     |
                                 +----------------------------------+
                                                  |
                                                  v
                                 +----------------------------------+
                                 | Phase 9: Enterprise Readiness,   |
                                 | Reliability, Security & Metrics  |
+                                +----------------------------------+
+                                                 |
+                                                 v
+                                +----------------------------------+
+                                | Phase 11 & 12: Academic Release  |
+                                |   & Empirical Test Validation    |
                                 +----------------------------------+
 ```
 
@@ -106,13 +114,8 @@ In traditional wealth management and robo-advisory platforms, portfolio rebalanc
 ## 🔬 4. Phase Breakdown & Key Components
 
 ### **Phase 1: Enterprise Foundation & Simulation Layer**
-- **Data Generator & Market Simulator**: Generates synthetic market price series (GBM / Jump Diffusion) across 252 trading days for 50+ securities.
-- **Portfolio & Client Engine**: Generates 50,000 investment accounts distributed across 5 Risk Categories:
-  1. **Ultra Conservative**: 10% Equity, 70% Fixed Income, 5% Alts, 15% Cash (3% Drift Limit)
-  2. **Conservative**: 25% Equity, 55% Fixed Income, 10% Alts, 10% Cash (4% Drift Limit)
-  3. **Balanced**: 50% Equity, 35% Fixed Income, 10% Alts, 5% Cash (5% Drift Limit)
-  4. **Aggressive**: 70% Equity, 15% Fixed Income, 10% Alts, 5% Cash (5% Drift Limit)
-  5. **Ultra Aggressive**: 85% Equity, 5% Fixed Income, 8% Alts, 2% Cash (7% Drift Limit)
+- **Data Generator & Market Simulator**: Generates synthetic market price series (GBM / Jump Diffusion) across 252 trading days for 500 securities.
+- **Portfolio & Client Engine**: Generates 50,000 investment accounts distributed across 5 Risk Categories (Ultra Conservative, Conservative, Balanced, Aggressive, Ultra Aggressive).
 
 ### **Phase 2: Portfolio Drift Monitoring & Trigger Intelligence**
 - **Drift Calculator**: Measures absolute allocation drift, maximum single-asset drift, and tracking error.
@@ -126,51 +129,41 @@ In traditional wealth management and robo-advisory platforms, portfolio rebalanc
 - **Execution Planner**: Translates optimal weights into concrete `BUY`/`SELL` trade orders.
 
 ### **Phase 4: Multi-Agent Decision Intelligence Layer**
-- Features a collaborative crew of 6 specialized AI Agents:
-  1. **Chief Operations Orchestrator**: Manages workflow state and coordinates agent evaluations.
-  2. **Senior Portfolio Analyst**: Evaluates drift reduction and target alignment quality.
-  3. **Chief Risk Officer**: Evaluates Value-at-Risk (VaR), stress scenarios, and tracking error.
-  4. **Enterprise Tax Specialist**: Evaluates tax-lot selection, Short-Term vs Long-Term gains, and tax loss harvesting.
-  5. **Chief Compliance Officer**: Enforces regulatory limits, client restrictions, and fiduciary duties.
-  6. **Financial Communications Specialist**: Synthesizes agent evaluations into clear decisions.
-- **Consensus & Conflict Validator**: Resolves disagreements between agents (e.g., Risk vs Tax) and scores consensus confidence.
+- Features a collaborative crew of 6 specialized AI Agents: Operations Orchestrator, Senior Portfolio Analyst, Chief Risk Officer, Enterprise Tax Specialist, Chief Compliance Officer, Financial Communications Specialist.
+- **Consensus & Conflict Validator**: Resolves disagreements between agents and scores consensus confidence (96% Consensus).
 
 ### **Phase 5: Explainable AI (XAI) Engine**
-- **Surrogate Decision Model**: Trains interpretable decision trees/random forests on optimization outputs.
-- **SHAP Engine**: Calculates Shapley feature values explaining why a specific trade order was generated.
+- **Surrogate Decision Model**: Decision tree/random forest models trained on optimization outputs.
+- **SHAP Engine**: Calculates Shapley feature values explaining trade generation drivers.
 - **LIME Engine**: Generates local surrogate explanations for individual portfolio decisions.
-- **Counterfactual Engine**: Computes "what-if" scenarios (e.g., "What trade would be generated if market volatility rose 20%?").
-- **Multi-Audience Generator**: Translates complex math into formatted reports tailored for **Clients**, **Advisors**, and **Compliance Auditors**.
+- **Counterfactual Engine**: Computes "what-if" scenarios (*"What would have changed the decision?"*).
 
 ### **Phase 6: Human-in-the-Loop Governance & Compliance Layer**
-- **Approval Engine**: Categorizes decisions into 3 risk levels (`AUTOMATED_APPROVAL`, `ADVISOR_APPROVAL_REQUIRED`, `COMPLIANCE_ESCALATION`).
-- **Override Manager**: Allows human advisors to modify trade quantities or reject recommendations with mandatory rationale logging.
+- **Approval Engine**: Categorizes decisions into risk levels (`AUTOMATED_APPROVAL`, `ADVISOR_APPROVAL_REQUIRED`, `COMPLIANCE_ESCALATION`).
+- **Override Manager**: Allows human advisors to modify trade quantities or reject recommendations.
 - **Kill Switch**: Provides immediate manual and automated system-wide circuit tripping during market anomalies.
-- **Immutable Audit Trail**: Logs every monitoring check, agent vote, approval, and override with cryptographic hashes.
+- **Immutable Audit Trail**: Cryptographic SHA-256 ledger tracking all system events.
 
 ### **Phase 7: Backtesting & Benchmark Engine**
 - **Historical Replay Simulator**: Simulates portfolio performance over 252 trading days.
-- **Benchmark Engine**: Compares Autonomous Rebalancing against **Buy & Hold** and **Calendar-based Rebalancing** strategies across Sharpe Ratio, Max Drawdown, Turnover, and After-Tax Return.
-- **Stress Testing Engine**: Evaluates portfolio resilience under market crash scenarios (e.g., 2008 Financial Crisis, 2020 COVID Crash, High Inflation/Interest Rate Hikes).
+- **Benchmark Engine**: Compares Autonomous Rebalancing against Buy & Hold and Calendar-based Rebalancing strategies across Sharpe Ratio, Max Drawdown, Turnover %, and After-Tax Return %.
 
-### **Phase 8: Gradio Enterprise Operations Dashboard**
-- Interactive Web Interface (`http://localhost:7860`) featuring 10 dedicated operational tabs:
-  1. **Executive Overview**: High-level system statistics and active portfolio counters.
-  2. **Portfolio Directory**: Searchable list of all 50k portfolios with risk profile filtering.
-  3. **Drift & Priority Queue**: Live list of triggered portfolios sorted by priority.
-  4. **Convex Optimization**: Interactive solver adjustments and target weight visualizer.
-  5. **Multi-Agent Intelligence**: Live agent debates, consensus scoring, and vote breakdown.
-  6. **Explainable AI (XAI)**: SHAP summary plots, feature impact graphs, and counterfactuals.
-  7. **Governance & Approvals**: Pending trade approval queue with one-click approve/reject/override controls.
-  8. **Backtesting & Benchmarks**: Comparative performance charts (Sharpe, Drawdown, Cumulative Returns).
-  9. **Stress Testing**: Scenario simulation impact analysis.
-  10. **System Health & Observability**: Real-time CPU, Memory, Disk, and API endpoint monitoring.
+### **Phase 8 & 10: User-Centric UI & Guided Demonstration**
+- Interactive Web Interface (`http://localhost:7860`) featuring 8 presentation story tabs:
+  1. Executive Dashboard
+  2. Portfolio Analysis
+  3. Rebalancing & Optimization
+  4. AI Financial Council
+  5. Explainable AI (XAI)
+  6. Governance & Approval
+  7. Backtesting & Results
+  8. Validation & Evidence
+- Includes the `🚀 RUN DEMO PORTFOLIO` guided demonstration trigger.
 
-### **Phase 9: Enterprise Readiness, Reliability, Security & Observability**
-- **Reliability**: `CircuitBreaker` pattern, `RetryManager` with exponential backoff (`tenacity`), fallback solvers.
-- **Performance**: In-memory `CacheManager` (TTL caching), multi-threaded batch executor.
-- **Security**: Role-Based Access Control (RBAC with `ADMIN`, `ADVISOR`, `COMPLIANCE_OFFICER`, `READ_ONLY`), AES/Fernet payload encryption, input sanitization.
-- **Observability & REST API**: FastAPI server (`http://localhost:8000`) serving `/health`, `/metrics` (Prometheus), `/status`, and `/system` endpoints.
+### **Phase 9, 11 & 12: Production Readiness, Validation & Academic Release**
+- **Reliability & Security**: CircuitBreakers, exponential backoff retries, Fernet encryption, RBAC roles (`ADMIN`, `ADVISOR`, `COMPLIANCE`).
+- **REST Observability**: FastAPI server (`http://localhost:8000`) serving `/health` and `/metrics` (Prometheus).
+- **Validation**: 62/62 Pytest tests passing (100% pass rate).
 
 ---
 
@@ -205,7 +198,7 @@ python main.py --phase 9
 
 ### 3. **Run End-to-End Multi-Phase Simulation**
 ```bash
-python main.py --phase 7 --portfolios 100 --days 252
+python main.py --phase 7 --clients 100 --portfolios 100 --days 252
 ```
 
 ### 4. **Run Enterprise Pytest Test Suite**
@@ -215,4 +208,4 @@ pytest tests/ -v
 
 ---
 
-*Documentation generated automatically by Aviator AI Assistant.*
+*Documentation updated for Aviator AI Final Year College Project.*

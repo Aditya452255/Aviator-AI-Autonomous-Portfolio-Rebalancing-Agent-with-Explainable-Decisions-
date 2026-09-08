@@ -1,14 +1,21 @@
-"""UI Navigation module defining dashboard tab titles and icons."""
+"""UI Navigation module defining presentation story tab titles and icons for Aviator AI."""
 
 TAB_TITLES = {
-    "OVERVIEW": "Executive Overview",
-    "PORTFOLIO_MONITOR": "Portfolio Monitor",
-    "OPTIMIZATION": "Portfolio Optimization",
-    "TRADE_EXECUTION": "Trade Execution",
-    "MULTI_AGENT": "Multi-Agent Intelligence",
-    "EXPLAINABILITY": "Explainable AI (XAI)",
-    "GOVERNANCE": "Governance & Approvals",
-    "BACKTESTING": "Backtesting & Benchmarks",
-    "ANALYTICS": "Portfolio Analytics",
-    "SYSTEM_HEALTH": "System Health",
+    # Story-Driven Presentation Tabs (Phases 10-12)
+    "EXECUTIVE": "1. Executive Dashboard",
+    "ANALYSIS": "2. Portfolio Analysis",
+    "REBALANCING": "3. Rebalancing & Optimization",
+    "COUNCIL": "4. AI Financial Council",
+    "EXPLAINABILITY": "5. Explainable AI (XAI)",
+    "GOVERNANCE": "6. Governance & Approval",
+    "BACKTESTING": "7. Backtesting & Results",
+    "VALIDATION": "8. Validation & Evidence",
+    # Backward Compatibility Mappings
+    "OVERVIEW": "1. Executive Dashboard",
+    "PORTFOLIO_MONITOR": "2. Portfolio Analysis",
+    "OPTIMIZATION": "3. Rebalancing & Optimization",
+    "TRADE_EXECUTION": "3. Rebalancing & Optimization",
+    "MULTI_AGENT": "4. AI Financial Council",
+    "ANALYTICS": "7. Backtesting & Results",
+    "SYSTEM_HEALTH": "8. Validation & Evidence",
 }

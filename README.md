@@ -1,14 +1,26 @@
 # Aviator AI — Autonomous Portfolio Rebalancing Agent
 
-## Enterprise Readiness, Reliability & Observability Service (Phase 9)
+## Final Year Project | Complete 12-Phase System
 
-**Aviator AI** is an enterprise-grade agentic robo-advisory platform designed to manage, continuously monitor, optimize, and rebalance **50,000 investment portfolios** across five distinct risk categories with explainable decision support, Human-in-the-Loop governance, backtesting, Gradio dashboard, and production-grade reliability & observability.
+**Aviator AI** is an autonomous portfolio rebalancing platform engineered to manage, continuously monitor, optimize, govern, and explain investment decisions across **50,000 investment portfolios** across five distinct risk profiles with Explainable AI (XAI), Human-in-the-Loop governance, backtesting, interactive Gradio dashboards, and production-grade reliability & observability.
 
-This repository contains **Phase 1 (Enterprise Foundation & Simulation Layer)**, **Phase 2 (Portfolio Drift Monitoring & Trigger Intelligence Layer)**, **Phase 3 (Portfolio Optimization & Trade Generation Engine)**, **Phase 4 (Multi-Agent Decision Intelligence Layer)**, **Phase 5 (Explainable AI Engine)**, **Phase 6 (Human-in-the-Loop Governance Layer)**, **Phase 7 (Backtesting Engine)**, **Phase 8 (Gradio Enterprise Operations Dashboard)**, and **Phase 9 (Enterprise Readiness, Reliability, Security & Observability Layer)**, built adhering strictly to SOLID design principles, modular architecture, type-safety, and production readiness.
+This repository contains the complete **Phases 1–12 Architecture**:
+- **Phase 1**: Simulation & Data Generation Layer
+- **Phase 2**: Portfolio Drift Monitoring & Trigger Intelligence Layer
+- **Phase 3**: Portfolio Convex Optimization & Tax-Aware Rebalancing Engine
+- **Phase 4**: Multi-Agent Decision Intelligence Layer (6 Specialized AI Agents)
+- **Phase 5**: Explainable AI (XAI) Engine (SHAP, LIME, Counterfactuals)
+- **Phase 6**: Human-in-the-Loop Governance & Compliance Layer (SHA-256 Audit Trail)
+- **Phase 7**: Backtesting, Benchmarks & Macro Stress Testing Engine
+- **Phase 8**: Gradio Operations Dashboard
+- **Phase 9**: Enterprise Readiness, Reliability, Security & Observability Layer
+- **Phase 10**: User-Centric UI & Guided Demonstration (`🚀 RUN DEMO PORTFOLIO` Workflow)
+- **Phase 11**: Validation & Evidence (62/62 Pytest Tests Passing, 100% Pass Rate)
+- **Phase 12**: Final Integration & Academic Release
 
 ---
 
-## 🏗 System Architecture (Phases 1-9)
+## 🏗 Complete 12-Phase System Architecture
 
 ```
                                 +----------------------------------+
@@ -53,68 +65,49 @@ This repository contains **Phase 1 (Enterprise Foundation & Simulation Layer)**,
                                                  |
                                                  v
                                 +----------------------------------+
-                                |   Phase 8: Gradio Enterprise     |
-                                |       Operations Dashboard       |
+                                | Phase 8 & 10: Gradio Operations  |
+                                |   & Story-Driven Demo Dashboard  |
                                 +----------------------------------+
                                                  |
                                                  v
                                 +----------------------------------+
-                                | Phase 9: Enterprise Readiness,   |
-                                | Reliability, Security & Metrics  |
+                                | Phase 9: Enterprise Reliability, |
+                                | Security, RBAC & Health REST API |
                                 +----------------------------------+
                                                  |
-       +-----------------------------------------+-----------------------------------------+
-       |                         |               |                         |               |
-       v                         v               v                         v               v
-+------------------+   +------------------+   +------------------+   +------------------+   +------------------+
-| Reliability      |   | Performance      |   | Security & RBAC  |   | Prometheus       |   | Deployment       |
-| (CircuitBreaker, |   | (TTL Cache,      |   | (ADMIN, ADVISOR, |   | Observability    |   | (Dockerfile,     |
-| Retries, Health) |   | Parallel Pool)   |   | Payload Encryption|  | & Health REST API|   | Docker Compose)  |
-+------------------+   +------------------+   +------------------+   +------------------+   +------------------+
+                                                 v
+                                +----------------------------------+
+                                | Phase 11 & 12: Academic Release  |
+                                |   & Empirical Test Validation    |
+                                +----------------------------------+
 ```
 
 ---
 
-## 🛡 Phase 9 Enterprise Production Components
+## 🏛 8 Presentation Story Tabs
 
-1. **Reliability & Self-Healing**:
-   - `CircuitBreaker`: State machine (`CLOSED`, `OPEN`, `HALF_OPEN`) preventing cascade solver/model failures.
-   - `RetryManager` & `FallbackManager`: Exponential backoff retries (`tenacity`) & solver degradation fallbacks.
-   - `SystemHealthChecker` & `RecoveryManager`: Self-healing recovery diagnostics monitoring CPU, memory, and disk health.
+The UI dashboard tells a clear 8-step presentation story:
 
-2. **Performance & Concurrency**:
-   - `CacheManager`: In-memory TTL caching (`cachetools`).
-   - `ParallelExecutor` & `BatchProcessor`: ThreadPool processing for 50k portfolio batches.
-   - `ResourceMonitor`: Real-time hardware monitoring via `psutil`.
-
-3. **Security & Governance**:
-   - `Role` RBAC (`ADMIN`, `ADVISOR`, `COMPLIANCE_OFFICER`, `READ_ONLY`).
-   - `AuthenticationManager` & `AuthorizationManager`: Token authentication and permission enforcement.
-   - `PayloadEncryption`: AES/Fernet payload encryption and input sanitization.
-
-4. **Observability & REST Health APIs**:
-   - `PrometheusMetricsManager`: Counter, Gauge, and Histogram metrics for Prometheus scraping.
-   - FastAPI REST Server exposing:
-     - GET `/health` — Subsystem health metrics.
-     - GET `/metrics` — Prometheus metrics text payload.
-     - GET `/status` — High-level operational status.
-     - GET `/system` — System hardware stats (`psutil`).
-
-5. **Deployment & CI/CD**:
-   - `Dockerfile`: Multi-stage Python 3.11 container.
-   - `docker-compose.yml`: Multi-container orchestrator (App + Prometheus).
-   - `.github/workflows/ci.yml`: GitHub Actions pipeline running linting, pytest, coverage, and Docker build.
+1. **`1. Executive Dashboard`**: Portfolio status (`🚨 REBALANCING REQUIRED` | Current Drift: `6.8%` vs Allowed Drift: `5.0%`), plain-English explanation, allocation chart, and recommended trade action.
+2. **`2. Portfolio Analysis`**: Current vs Target vs Proposed allocation chart, asset class drift table (`OVERWEIGHT` / `UNDERWEIGHT`), overweight/underweight asset cards, and risk findings.
+3. **`3. Rebalancing & Optimization`**: Recommended trade execution order table (`Asset Class`, `Action`, `Quantity`, `Est. Price (₹)`, `Strategy`), optimization objective, constraints, and collapsible `Technical Details ▼` accordion (`CVXPY` / `SciPy SLSQP`).
+4. **`4. AI Financial Council`**: `96% Consensus` visual badge, voting breakdown across 6 specialized AI agents (Ops Orchestrator, Portfolio Analyst, Risk Officer, Tax Specialist, Compliance Officer, Comms Specialist), and final verdict (`RECOMMEND EXECUTION`).
+5. **`5. Explainable AI (XAI)`**: Plain-English narrative *"Why did Aviator make this decision?"*, SHAP global feature impact scores, LIME weights table, and Counterfactual scenario (*"What would have changed the decision?"*).
+6. **`6. Governance & Approval`**: Human-in-the-Loop advisor action center (`Advisor Approval Required`), policy check status (`PASS`), interactive `Approve Trade`, `Reject Trade`, `Override` controls, portfolio-filtered audit log, and SHA-256 cryptographic ledger.
+7. **`7. Backtesting & Results`**: 252-day historical backtesting CAGR % comparison chart matching exact table values (Aviator AI 15.7% vs Calendar 13.8% vs Buy & Hold 12.5%) and risk-adjusted performance matrix.
+8. **`8. Validation & Evidence`**: Empirical validation display showing **62/62 Pytest tests passed (100%)**, end-to-end multi-phase execution checklist, and Phase 9 system health status (`HEALTHY`, CPU/Memory, `/health` & `/metrics` endpoints).
 
 ---
 
-## 📁 Directory Structure
+## 📁 Repository Structure
 
 ```
 project_root/
 ├── README.md                          # Technical documentation
+├── PROJECT_OVERVIEW.md                # Comprehensive problem-solving guide
 ├── Dockerfile                         # Production multi-stage Docker image
 ├── docker-compose.yml                 # Multi-container Compose config
-├── main.py                            # CLI entry point runner (Phases 1-9)
+├── main.py                            # CLI entry point runner (Phases 1-12)
 ├── requirements.txt                   # Production dependencies
 ├── .github/workflows/ci.yml           # GitHub Actions CI workflow
 ├── config/                            # YAML configurations
@@ -123,7 +116,7 @@ project_root/
 │   ├── models/                        # Pydantic domain models
 │   ├── data/                          # Generators & market simulator
 │   ├── monitoring/                    # Drift calculator, trigger & priority engines
-│   ├── optimization/                  # Optimizer, constraints, tax loss harvester, execution planner
+│   ├── optimization/                  # Optimizer, constraints, tax harvester, execution planner
 │   ├── memory/                        # Decision memory & shared workflow state
 │   ├── agents/                        # Orchestrator, Analyst, Risk, Tax, Compliance, Explanation agents
 │   ├── workflows/                     # TaskFactory, HandoffManager, CrewBuilder, MultiAgentWorkflowEngine
@@ -132,37 +125,39 @@ project_root/
 │   ├── governance/                    # ApprovalEngine, OverrideManager, EscalationManager, KillSwitch, AuditTrail
 │   ├── backtesting/                   # HistoricalReplayEngine, StrategyRunner, BenchmarkEngine, ScenarioEngine, StressTestEngine
 │   ├── analytics/                     # Performance, Benchmark, Scenario, Override, Audit analytics
-│   ├── ui/                            # Gradio UI (theme, layout, 10 tabs, components)
+│   ├── ui/                            # Gradio UI (theme, layout, 8 story tabs, components)
 │   ├── reliability/                   # CircuitBreaker, RetryManager, FallbackManager, HealthChecker, RecoveryManager
 │   ├── performance/                   # CacheManager, BatchProcessor, ParallelExecutor, ResourceMonitor
 │   ├── security/                      # RBAC, Authentication, Authorization, PayloadEncryption, InputValidator
 │   ├── observability/                 # PrometheusMetricsManager, Monitoring, StructuredLogger, AlertEngine
 │   └── services/                      # SimulationService, MonitoringService, OptimizationService, AgentService, ExplainabilityService, GovernanceService, BacktestingService, DashboardService, ProductionService
-└── tests/                             # Enterprise Pytest test suite (58 unit tests)
+└── tests/                             # Enterprise Pytest test suite (62 unit & integration tests)
 ```
 
 ---
 
-## 🏃 Running Phase 9 Production Service
+## 🏃 Operational Commands
 
-Run Phase 9 health evaluation and export reports:
+### 1. Launch Guided Presentation Dashboard (Port 7860)
+```bash
+python main.py --phase 8
+```
+*Access via browser*: **`http://localhost:7860`**
 
+### 2. Run Production Health & Observability Service (Port 8000)
 ```bash
 python main.py --phase 9
 ```
+- Health API: `http://localhost:8000/health`
+- Prometheus Metrics: `http://localhost:8000/metrics`
 
-Launch production Docker container:
-
+### 3. Run End-to-End Simulation
 ```bash
-docker-compose up --build
+python main.py --phase 7 --clients 100 --portfolios 100 --days 252
 ```
 
----
-
-## 🧪 Testing & Verification
-
-Execute full test suite across all 9 phases:
-
+### 4. Execute Full Pytest Test Suite
 ```bash
-pytest tests/ --cov=src --cov-report=term-missing
+pytest tests/ -v
 ```
+*(62/62 tests passing, 100% pass rate)*

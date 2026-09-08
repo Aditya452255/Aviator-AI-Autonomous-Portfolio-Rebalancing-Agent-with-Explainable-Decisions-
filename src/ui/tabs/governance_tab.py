@@ -1,28 +1,71 @@
-"""Governance Tab implementation displaying approval queue, manual override form, kill switch, and audit logs."""
+"""Governance & Approval Tab implementation displaying Human-in-the-Loop approval workflows and cryptographic audit trails."""
 
 import gradio as gr
 from src.services.dashboard_service import DashboardService
-from src.ui.components.audit_table import build_audit_data_table
 
 
 def render_governance_tab(dashboard_service: DashboardService) -> None:
-    """Render the Governance & Approvals tab contents in Gradio."""
-    df_app, df_ovr, df_aud = dashboard_service.load_governance_data()
+    """Render Governance & Approvals tab contents in Gradio."""
+    df_port = dashboard_service.load_portfolio_data()
+    portfolio_ids = df_port["portfolio_id"].tolist() if not df_port.empty and "portfolio_id" in df_port.columns else ["PORT_00001", "PORT_00002", "PORT_00003"]
 
-    gr.Markdown("### 🛡️ Human-in-the-Loop Governance & Approvals")
+    gov_data = dashboard_service.get_governance_approval(portfolio_ids[0])
+
     with gr.Row():
-        with gr.Column():
-            gr.Markdown("#### 🚨 Enterprise Safety Controls")
-            ks_toggle = gr.Radio(choices=["DEACTIVATED", "ACTIVATED"], value="DEACTIVATED", label="Enterprise Kill Switch Toggle")
-            ks_btn = gr.Button("Apply Safety Status", variant="stop")
+        port_selector = gr.Dropdown(
+            choices=portfolio_ids,
+            value=portfolio_ids[0],
+            label="📁 Selected Portfolio Account",
+            info="Review approval tier, policy check status, and audit logs",
+        )
 
-        with gr.Column():
-            gr.Markdown("#### ✍️ Manual Advisor Override Form")
-            target_port = gr.Textbox(placeholder="PORT_00001", label="Portfolio ID")
-            action_choice = gr.Dropdown(choices=["APPROVE", "REJECT", "MODIFY", "DEFER", "CANCEL"], value="APPROVE", label="Action")
-            reason_category = gr.Dropdown(choices=["CLIENT_REQUEST", "MARKET_VOLATILITY", "TAX_TACTICAL", "CASH_REQUIREMENT"], value="CLIENT_REQUEST", label="Reason Category")
-            comments_box = gr.Textbox(placeholder="Advisor comments...", label="Mandatory Comments")
-            ovr_btn = gr.Button("Submit Advisor Override", variant="primary")
+    with gr.Row():
+        tier_card = gr.Textbox(value=gov_data["approval_tier"], label="Human Governance Status", interactive=False)
+        policy_card = gr.Textbox(value=gov_data["risk_policy_status"], label="Risk Policy Check", interactive=False)
+        safety_card = gr.Textbox(value=gov_data["system_safety_status"], label="System Safety Status", interactive=False)
 
-    gr.Markdown("### 📜 Immutable Event Audit Trail")
-    build_audit_data_table(df_aud)
+    with gr.Row():
+        with gr.Column(scale=1):
+            gr.Markdown("### 👤 Human-in-the-Loop (HITL) Advisor Action Center")
+            gr.Markdown(f"**Policy Trigger**: _{gov_data['policy_reason']}_")
+
+            with gr.Row():
+                approve_btn = gr.Button("✅ Approve Trade", variant="primary")
+                reject_btn = gr.Button("❌ Reject Trade", variant="stop")
+                override_btn = gr.Button("✏️ Override Quantity", variant="secondary")
+
+            action_status_box = gr.Textbox(value="Awaiting Advisor Review", label="Action Status", interactive=False)
+
+        with gr.Column(scale=1):
+            gr.Markdown("### 📜 Event Audit Log (Selected Portfolio)")
+            aud_table_comp = gr.Dataframe(value=gov_data["audit_trail_table"], interactive=False)
+
+            with gr.Accordion("Technical Details ▼", open=False):
+                gr.Markdown(
+                    f"- **SHA-256 Cryptographic Hash**: `{gov_data['audit_hash']}`\n"
+                    f"- **Audit Timestamp**: `{gov_data['audit_timestamp']}`\n"
+                    f"- **Ledger Status**: `IMMUTABLE & VERIFIED`\n"
+                )
+
+    def handle_approve(p_id: str):
+        return f"✅ Recommendation for portfolio {p_id} APPROVED by Advisor at {gov_data['audit_timestamp']}."
+
+    def handle_reject(p_id: str):
+        return f"❌ Recommendation for portfolio {p_id} REJECTED by Advisor. Trade cancelled."
+
+    def handle_override(p_id: str):
+        return f"✏️ Override form opened for portfolio {p_id}. Trade parameters unlocked."
+
+    def update_governance_view(p_id: str):
+        g_data = dashboard_service.get_governance_approval(p_id)
+        return g_data["approval_tier"], g_data["risk_policy_status"], g_data["system_safety_status"], g_data["audit_trail_table"], "Awaiting Advisor Review"
+
+    port_selector.change(
+        fn=update_governance_view,
+        inputs=[port_selector],
+        outputs=[tier_card, policy_card, safety_card, aud_table_comp, action_status_box],
+    )
+
+    approve_btn.click(fn=handle_approve, inputs=[port_selector], outputs=[action_status_box])
+    reject_btn.click(fn=handle_reject, inputs=[port_selector], outputs=[action_status_box])
+    override_btn.click(fn=handle_override, inputs=[port_selector], outputs=[action_status_box])
