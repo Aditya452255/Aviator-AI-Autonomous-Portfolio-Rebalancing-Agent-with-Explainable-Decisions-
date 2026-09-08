@@ -27,9 +27,11 @@ wheels/
 # Testing & Coverage
 .pytest_cache/
 .coverage
+coverage.xml
 htmlcov/
 .nox/
 .tox/
+
 
 # Environment & Logs
 .env

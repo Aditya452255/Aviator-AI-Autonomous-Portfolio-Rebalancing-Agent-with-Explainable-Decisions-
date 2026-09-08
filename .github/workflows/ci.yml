@@ -1,4 +1,4 @@
-name: WealthPilot AI - Production CI/CD Pipeline
+name: Aviator AI — Production CI/CD Pipeline
 
 on:
   push:
@@ -40,4 +40,5 @@ jobs:
 
       - name: Build Docker Container
         run: |
-          docker build -t wealthpilot-ai:latest .
+          docker build -t aviator-ai:latest .
+
